@@ -1,0 +1,155 @@
+<<<<<<< HEAD
+=======
+Epoch: 1
+Batch: 512
+Accuracy of the network on the 10000 validation images: 53.06 %
+Runtime: 0:0:51.38216519355774
+
+------------------END EPOCH 1------------------
+
+------------------BEGIN EPOCH 2------------------
+Epoch: 2
+Batch: 512
+Accuracy of the network on the 10000 validation images: 81.59 %
+Runtime: 0:1:30.45194435119629
+
+------------------END EPOCH 2------------------
+
+------------------BEGIN EPOCH 3------------------
+Epoch: 3
+Batch: 512
+Accuracy of the network on the 10000 validation images: 83.85 %
+Runtime: 0:2:25.51448369026184
+
+------------------END EPOCH 3------------------
+
+------------------BEGIN EPOCH 4------------------
+Epoch: 4
+Batch: 512
+Accuracy of the network on the 10000 validation images: 86.95 %
+Runtime: 0:2:59.021791219711304
+
+------------------END EPOCH 4------------------
+
+------------------BEGIN EPOCH 5------------------
+Epoch: 5
+Batch: 512
+Accuracy of the network on the 10000 validation images: 86.26 %
+Runtime: 0:3:18.514832258224487
+
+------------------END EPOCH 5------------------
+
+------------------BEGIN EPOCH 6------------------
+Epoch: 6
+Batch: 512
+Accuracy of the network on the 10000 validation images: 86.98 %
+Runtime: 0:4:9.868661403656006
+
+------------------END EPOCH 6------------------
+
+------------------BEGIN EPOCH 7------------------
+Epoch: 7
+Batch: 512
+Accuracy of the network on the 10000 validation images: 86.51 %
+Runtime: 0:4:38.37678408622742
+
+------------------END EPOCH 7------------------
+
+------------------BEGIN EPOCH 8------------------
+Epoch: 8
+Batch: 512
+Accuracy of the network on the 10000 validation images: 87.79 %
+Runtime: 0:5:25.000754594802856
+
+------------------END EPOCH 8------------------
+
+------------------BEGIN EPOCH 9------------------
+Epoch: 9
+Batch: 512
+Accuracy of the network on the 10000 validation images: 89.3 %
+Runtime: 0:6:7.0084288120269775
+
+------------------END EPOCH 9------------------
+
+------------------BEGIN EPOCH 10------------------
+Epoch: 10
+Batch: 512
+Accuracy of the network on the 10000 validation images: 87.24 %
+Runtime: 0:6:43.95707678794861
+
+------------------END EPOCH 10------------------
+
+------------------BEGIN EPOCH 11------------------
+Epoch: 11
+Batch: 512
+Accuracy of the network on the 10000 validation images: 88.35 %
+Runtime: 0:7:23.826194286346436
+
+------------------END EPOCH 11------------------
+
+------------------BEGIN EPOCH 12------------------
+Epoch: 12
+Batch: 512
+Accuracy of the network on the 10000 validation images: 88.39 %
+Runtime: 0:8:4.389956951141357
+
+------------------END EPOCH 12------------------
+
+------------------BEGIN EPOCH 13------------------
+Epoch: 13
+Batch: 512
+Accuracy of the network on the 10000 validation images: 88.85 %
+Runtime: 0:8:44.20309543609619
+
+------------------END EPOCH 13------------------
+
+------------------BEGIN EPOCH 14------------------
+Epoch: 14
+Batch: 512
+Accuracy of the network on the 10000 validation images: 87.61 %
+Runtime: 0:9:24.606024026870728
+
+------------------END EPOCH 14------------------
+
+------------------BEGIN EPOCH 15------------------
+Epoch: 15
+Batch: 512
+Accuracy of the network on the 10000 validation images: 89.71 %
+Runtime: 0:10:4.678318977355957
+
+------------------END EPOCH 15------------------
+
+------------------BEGIN EPOCH 16------------------
+Epoch: 16
+Batch: 512
+Accuracy of the network on the 10000 validation images: 89.37 %
+Runtime: 0:10:45.37388300895691
+
+------------------END EPOCH 16------------------
+
+------------------BEGIN EPOCH 17------------------
+Epoch: 17
+Batch: 512
+Accuracy of the network on the 10000 validation images: 88.83 %
+Runtime: 0:11:25.50279474258423
+
+------------------END EPOCH 17------------------
+
+------------------BEGIN EPOCH 18------------------
+Epoch: 18
+Batch: 512
+Accuracy of the network on the 10000 validation images: 88.39 %
+Runtime: 0:12:6.330946207046509
+
+------------------END EPOCH 18------------------
+
+------------------BEGIN EPOCH 19------------------
+Epoch: 19
+Batch: 512
+Accuracy of the network on the 10000 validation images: 87.77 %
+Runtime: 0:13:16.81142544746399
+
+------------------END EPOCH 19------------------
+
+
+>>>>>>> parent of 0469792 (ran for 20-50 epochs)
