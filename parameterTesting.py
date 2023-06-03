@@ -270,7 +270,7 @@ def boilerplate(ep, lr, wdr, mom):
 
 
 
-for epoch in range(1, 41):
+for epoch in range(20, 51):
          trainData = datasets.FashionMNIST(root="./",
                                   train=True,
                                   transform=transform,
