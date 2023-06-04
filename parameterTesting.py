@@ -56,7 +56,7 @@ testLoad = DataLoader(testData,
 
 class ResidualBlock(nn.Module):
     
-    expansion = 4
+    expansion = 2
     
     def __init__(self, in_channels, out_channels, stride = 1, downsample = None):
         super(ResidualBlock, self).__init__()
@@ -72,15 +72,15 @@ class ResidualBlock(nn.Module):
         """ The channel mismatch happens here, with this con2d layer
             This is the block made when in_channels=64 and out_channels=128"""
         self.conv2 = nn.Sequential(
-            nn.Conv2d(out_channels, out_channels, kernel_size=7, stride=stride, padding=3),
+            nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=stride, padding=1),
             nn.BatchNorm2d(out_channels),
             nn.ReLU(),
         )
 
-        self.conv3 = nn.Sequential(
-            nn.Conv2d(out_channels, out_channels * self.expansion, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm2d(out_channels*self.expansion)
-        )
+        # self.conv3 = nn.Sequential(
+        #     nn.Conv2d(out_channels, out_channels * self.expansion, kernel_size=3, stride=1, padding=1),
+        #     nn.BatchNorm2d(out_channels*self.expansion)
+        # )
 
         # downsample for forwarding
         # short = []
@@ -111,7 +111,7 @@ class ResidualBlock(nn.Module):
             At this point the tenor going into this is torch.Size([30, 128, 7, 7])"""
         x = self.conv2(x)
 
-        x = self.conv3(x)
+        # x = self.conv3(x)
 
         if self.downsample != None:
             residual = self.downsample(residual)
@@ -224,7 +224,7 @@ def boilerplate(ep, lr, wdr, mom):
     # blockNums using the inputted list
     # input_num of 1 for gray scaled, 3 for color
     # output_num of 10 for 10 classes
-    model = Resnet(ResidualBlock, [3, 4, 6, 3], 1, 10).to(device)
+    model = Resnet(ResidualBlock, [1, 1, 1, 1], 1, 10).to(device)
     # loss
     criterion = nn.CrossEntropyLoss()
     # optimizer
