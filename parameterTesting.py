@@ -56,7 +56,7 @@ testLoad = DataLoader(testData,
 
 class ResidualBlock(nn.Module):
     
-    expansion = 2
+    expansion = 4
     
     def __init__(self, in_channels, out_channels, stride = 1, downsample = None):
         super(ResidualBlock, self).__init__()
@@ -72,15 +72,15 @@ class ResidualBlock(nn.Module):
         """ The channel mismatch happens here, with this con2d layer
             This is the block made when in_channels=64 and out_channels=128"""
         self.conv2 = nn.Sequential(
-            nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=stride, padding=1),
+            nn.Conv2d(out_channels, out_channels, kernel_size=7, stride=stride, padding=3),
             nn.BatchNorm2d(out_channels),
             nn.ReLU(),
         )
 
-        # self.conv3 = nn.Sequential(
-        #     nn.Conv2d(out_channels, out_channels * self.expansion, kernel_size=3, stride=1, padding=1),
-        #     nn.BatchNorm2d(out_channels*self.expansion)
-        # )
+        self.conv3 = nn.Sequential(
+            nn.Conv2d(out_channels, out_channels * self.expansion, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(out_channels*self.expansion)
+        )
 
         # downsample for forwarding
         # short = []
@@ -111,7 +111,7 @@ class ResidualBlock(nn.Module):
             At this point the tenor going into this is torch.Size([30, 128, 7, 7])"""
         x = self.conv2(x)
 
-        # x = self.conv3(x)
+        x = self.conv3(x)
 
         if self.downsample != None:
             residual = self.downsample(residual)
@@ -224,7 +224,7 @@ def boilerplate(ep, lr, wdr, mom):
     # blockNums using the inputted list
     # input_num of 1 for gray scaled, 3 for color
     # output_num of 10 for 10 classes
-    model = Resnet(ResidualBlock, [1, 1, 1, 1], 1, 10).to(device)
+    model = Resnet(ResidualBlock, [3, 4, 6, 3], 1, 10).to(device)
     # loss
     criterion = nn.CrossEntropyLoss()
     # optimizer
@@ -269,15 +269,15 @@ def boilerplate(ep, lr, wdr, mom):
     return correct, total
 
 
-
-for epoch in range(1, 41):
+batch = 128
+while batch <= 8193:
          trainData = datasets.FashionMNIST(root="./",
                                   train=True,
                                   transform=transform,
                                   download=False
                                   )
          trainLoad = DataLoader(trainData, 
-                                batch_size=512, 
+                                batch_size=batch, 
                             shuffle=True, 
                                drop_last=False
                             )
@@ -287,21 +287,22 @@ for epoch in range(1, 41):
                                   download=False
                                   )
          testLoad = DataLoader(testData, 
-                     batch_size=512, 
+                     batch_size=batch, 
                      shuffle=True,
                      drop_last=False
                      )
          rnResults = open('results.txt', 'a')
          start_time = time.time()
-         correct, total = boilerplate(epoch, .01, .001, .9)
+         correct, total = boilerplate(30, .01, .001, .9)
          runTime = time.time() - start_time
          hours = int(np.floor(runTime / 3600))
          mins = int(np.floor((runTime - (hours * 3600)) /60))
          secs = ((runTime - (hours * 3600)) - (mins * 60))
-         rnResults.write("Epoch: " + str(epoch) +"\nBatch: " + str(512) + "\n")
+         rnResults.write("Epoch: " + str(30) +"\nBatch: " + str(batch) + "\n")
          rnResults.write('Accuracy of the network on the {} validation images: {} %'.format(10000, 100 * correct / total))
          rnResults.write("\nRuntime: " + str(hours) + ":" + str(mins) + ":" + str(secs) +"\n")
          rnResults.write("\n")
-         rnResults.write("------------------END EPOCH " + str(epoch) + "------------------\n\n------------------BEGIN EPOCH " + str(epoch + 1) +"------------------\n")
+         rnResults.write("------------------END BATCH " + str(batch) + "------------------\n\n------------------BEGIN EPOCH " + str(batch * 2) +"------------------\n")
          rnResults.close()
-exit(1)
+         batch = batch * 2
+exit()
