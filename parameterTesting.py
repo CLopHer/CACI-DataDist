@@ -269,8 +269,8 @@ def boilerplate(ep, lr, wdr, mom):
     return correct, total
 
 
-batch = 128
-while batch <= 8193:
+batch = 2048
+while batch <= 2049:
          trainData = datasets.FashionMNIST(root="./",
                                   train=True,
                                   transform=transform,
