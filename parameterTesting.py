@@ -203,7 +203,7 @@ class Resnet(nn.Module):
         x = self.block3(x)
         
         x = self.avgpool(x)
-        # x = self.drop(x)
+        x = self.drop(x)
         x = self.flatten(x)
         x = self.fc(x)
         return x
@@ -293,7 +293,7 @@ while batch <= 8193:
                      )
          rnResults = open('results.txt', 'a')
          start_time = time.time()
-         correct, total = boilerplate(30, .01, .001, .9)
+         correct, total = boilerplate(30, .005, .001, .5)
          runTime = time.time() - start_time
          hours = int(np.floor(runTime / 3600))
          mins = int(np.floor((runTime - (hours * 3600)) /60))
