@@ -1,0 +1,250 @@
+PS C:\Users\Duan Nguyen\Documents\CSCI370> & "C:/Users/Duan Nguyen/AppData/Local/Programs/Python/Python310/
+eval_it_pool:  [0]
+
+================== Exp 0 ==================
+
+Hyper-parameters:
+ {'method': 'DC', 'dataset': 'FashionMNIST', 'model': 'ResNet18', 'ipc': 1, 'eval_mode': 'S', 'num_exp': 5,train': 64, 'init': 'noise', 'dsa_strategy': 'None', 'data_path': 'data', 'save_path': 'result', 'dis_metri1D13C07EEF0>, 'dsa': False}
+Evaluation model pool:  ['ResNet18']
+class c = 0: 6000 real images
+class c = 1: 6000 real images
+class c = 2: 6000 real images
+class c = 3: 6000 real images
+class c = 4: 6000 real images
+class c = 5: 6000 real images
+class c = 6: 6000 real images
+class c = 7: 6000 real images
+class c = 8: 6000 real images
+class c = 9: 6000 real images
+real images channel 0, mean = -0.0002, std = 1.0001
+c:\Users\Duan Nguyen\Documents\CSCI370\test syn\main.py:89: UserWarning: Creating a tensor from a list of n before converting to a tensor. (Triggered internally at ..\torch\csrc\utils\tensor_new.cpp:248.)
+  label_syn = torch.tensor([np.ones(args.ipc)*i for i in range(num_classes)], dtype=torch.long, requires_gr
+initialize synthetic data from random noise
+[2023-06-13 21:41:03] training begins
+-------------------------
+Evaluation
+model_train = ResNet18, model_eval = ResNet18, iteration = 0
+DC augmentation parameters:
+ {'crop': 4, 'scale': 0.2, 'rotate': 45, 'noise': 0.001, 'strategy': 'none'}
+[2023-06-13 21:41:35] Evaluate_00: epoch = 0300 train time = 20 s train loss = 0.009200 train acc = 1.0000,
+[2023-06-13 21:42:06] Evaluate_01: epoch = 0300 train time = 19 s train loss = 0.009328 train acc = 1.0000,
+[2023-06-13 21:42:37] Evaluate_02: epoch = 0300 train time = 18 s train loss = 0.009354 train acc = 1.0000,
+[2023-06-13 21:43:07] Evaluate_03: epoch = 0300 train time = 18 s train loss = 0.009388 train acc = 1.0000,
+[2023-06-13 21:43:38] Evaluate_04: epoch = 0300 train time = 18 s train loss = 0.009344 train acc = 1.0000,
+[2023-06-13 21:44:09] Evaluate_05: epoch = 0300 train time = 18 s train loss = 0.009305 train acc = 1.0000,
+[2023-06-13 21:44:41] Evaluate_06: epoch = 0300 train time = 19 s train loss = 0.009440 train acc = 1.0000,
+[2023-06-13 21:45:12] Evaluate_07: epoch = 0300 train time = 19 s train loss = 0.009585 train acc = 1.0000,
+[2023-06-13 21:45:43] Evaluate_08: epoch = 0300 train time = 18 s train loss = 0.009252 train acc = 1.0000,
+[2023-06-13 21:46:16] Evaluate_09: epoch = 0300 train time = 19 s train loss = 0.009421 train acc = 1.0000,
+[2023-06-13 21:46:46] Evaluate_10: epoch = 0300 train time = 18 s train loss = 0.009440 train acc = 1.0000,
+[2023-06-13 21:47:18] Evaluate_11: epoch = 0300 train time = 19 s train loss = 0.009215 train acc = 1.0000,
+[2023-06-13 21:47:48] Evaluate_12: epoch = 0300 train time = 18 s train loss = 0.009277 train acc = 1.0000,
+[2023-06-13 21:48:18] Evaluate_13: epoch = 0300 train time = 18 s train loss = 0.009157 train acc = 1.0000,
+[2023-06-13 21:48:48] Evaluate_14: epoch = 0300 train time = 18 s train loss = 0.009321 train acc = 1.0000,
+[2023-06-13 21:49:18] Evaluate_15: epoch = 0300 train time = 18 s train loss = 0.009489 train acc = 1.0000,
+[2023-06-13 21:49:48] Evaluate_16: epoch = 0300 train time = 17 s train loss = 0.009443 train acc = 1.0000,
+[2023-06-13 21:51:21] iter = 0000, loss = 1089.9177
+
+================== Exp 1 ==================
+
+Hyper-parameters:
+ {'method': 'DC', 'dataset': 'FashionMNIST', 'model': 'ResNet18', 'ipc': 1, 'eval_mode': 'S', 'num_exp': 5, 'num_eval': 20, 'epoch_eval_train': 300, 'Iteration': 5, 'lr_img': 0.1, 'lr_net': 0.01, 'batch_real': 64, 'batch_train': 64, 'init': 'noise', 'dsa_strategy': 'None', 'data_path': 'data', 'save_path': 'result', 'dis_metric': 'ours', 'outer_loop': 
+1, 'inner_loop': 1, 'device': 'cpu', 'dsa_param': <utils.ParamDiffAug object at 0x000001D13C07EEF0>, 'dsa': False, 'dc_aug_param': None}
+Evaluation model pool:  ['ResNet18']
+class c = 0: 6000 real images
+class c = 1: 6000 real images
+class c = 2: 6000 real images
+class c = 3: 6000 real images
+class c = 4: 6000 real images
+class c = 5: 6000 real images
+class c = 6: 6000 real images
+class c = 7: 6000 real images
+class c = 8: 6000 real images
+class c = 9: 6000 real images
+real images channel 0, mean = -0.0002, std = 1.0001
+initialize synthetic data from random noise
+[2023-06-13 21:51:53] training begins
+-------------------------
+Evaluation
+model_train = ResNet18, model_eval = ResNet18, iteration = 0
+DC augmentation parameters:
+ {'crop': 4, 'scale': 0.2, 'rotate': 45, 'noise': 0.001, 'strategy': 'none'}
+[2023-06-13 21:52:25] Evaluate_00: epoch = 0300 train time = 18 s train loss = 0.009509 train acc = 1.0000, test acc = 0.1018
+[2023-06-13 21:52:56] Evaluate_01: epoch = 0300 train time = 19 s train loss = 0.009337 train acc = 1.0000, test acc = 0.1012
+[2023-06-13 21:53:28] Evaluate_02: epoch = 0300 train time = 19 s train loss = 0.009432 train acc = 1.0000, test acc = 0.0972
+[2023-06-13 21:53:57] Evaluate_03: epoch = 0300 train time = 18 s train loss = 0.009341 train acc = 1.0000, test acc = 0.0988
+[2023-06-13 21:54:27] Evaluate_04: epoch = 0300 train time = 18 s train loss = 0.009195 train acc = 1.0000, test acc = 0.0887
+[2023-06-13 21:54:57] Evaluate_05: epoch = 0300 train time = 18 s train loss = 0.009483 train acc = 1.0000, test acc = 0.1070
+[2023-06-13 21:55:26] Evaluate_06: epoch = 0300 train time = 18 s train loss = 0.009245 train acc = 1.0000, test acc = 0.0779
+[2023-06-13 21:55:56] Evaluate_07: epoch = 0300 train time = 18 s train loss = 0.009374 train acc = 1.0000, test acc = 0.1091
+[2023-06-13 21:56:26] Evaluate_08: epoch = 0300 train time = 18 s train loss = 0.009365 train acc = 1.0000, test acc = 0.1005
+[2023-06-13 21:56:55] Evaluate_09: epoch = 0300 train time = 18 s train loss = 0.009281 train acc = 1.0000, test acc = 0.0992
+[2023-06-13 21:57:25] Evaluate_10: epoch = 0300 train time = 18 s train loss = 0.009250 train acc = 1.0000, test acc = 0.1042
+[2023-06-13 21:57:55] Evaluate_11: epoch = 0300 train time = 18 s train loss = 0.009274 train acc = 1.0000, test acc = 0.1320
+[2023-06-13 21:58:28] Evaluate_12: epoch = 0300 train time = 18 s train loss = 0.009196 train acc = 1.0000, test acc = 0.1276
+[2023-06-13 21:59:07] Evaluate_13: epoch = 0300 train time = 24 s train loss = 0.009403 train acc = 1.0000, test acc = 0.0993
+[2023-06-13 21:59:43] Evaluate_14: epoch = 0300 train time = 22 s train loss = 0.009146 train acc = 1.0000, test acc = 0.0769
+[2023-06-13 22:00:17] Evaluate_15: epoch = 0300 train time = 20 s train loss = 0.009696 train acc = 1.0000, test acc = 0.0802
+[2023-06-13 22:00:51] Evaluate_16: epoch = 0300 train time = 20 s train loss = 0.009494 train acc = 1.0000, test acc = 0.1020
+[2023-06-13 22:01:29] Evaluate_17: epoch = 0300 train time = 23 s train loss = 0.009348 train acc = 1.0000, test acc = 0.0972
+[2023-06-13 22:02:04] Evaluate_18: epoch = 0300 train time = 21 s train loss = 0.009561 train acc = 1.0000, test acc = 0.1002
+[2023-06-13 22:02:34] Evaluate_19: epoch = 0300 train time = 18 s train loss = 0.009209 train acc = 1.0000, test acc = 0.0923
+Evaluate 20 random ResNet18, mean = 0.0997 std = 0.0133
+-------------------------
+[2023-06-13 22:02:37] iter = 0000, loss = 1094.7083
+
+================== Exp 2 ==================
+
+Hyper-parameters:
+ {'method': 'DC', 'dataset': 'FashionMNIST', 'model': 'ResNet18', 'ipc': 1, 'eval_mode': 'S', 'num_exp': 5, 'num_eval': 20, 'epoch_eval_train': 300, 'Iteration': 5, 'lr_img': 0.1, 'lr_net': 0.01, 'batch_real': 64, 'batch_train': 64, 'init': 'noise', 'dsa_strategy': 'None', 'data_path': 'data', 'save_path': 'result', 'dis_metric': 'ours', 'outer_loop': 
+1, 'inner_loop': 1, 'device': 'cpu', 'dsa_param': <utils.ParamDiffAug object at 0x000001D13C07EEF0>, 'dsa': False, 'dc_aug_param': None}
+Evaluation model pool:  ['ResNet18']
+class c = 0: 6000 real images
+class c = 1: 6000 real images
+class c = 2: 6000 real images
+class c = 3: 6000 real images
+class c = 4: 6000 real images
+class c = 5: 6000 real images
+class c = 6: 6000 real images
+class c = 7: 6000 real images
+class c = 8: 6000 real images
+class c = 9: 6000 real images
+real images channel 0, mean = -0.0002, std = 1.0001
+initialize synthetic data from random noise
+[2023-06-13 22:03:09] training begins
+-------------------------
+Evaluation
+model_train = ResNet18, model_eval = ResNet18, iteration = 0
+DC augmentation parameters:
+ {'crop': 4, 'scale': 0.2, 'rotate': 45, 'noise': 0.001, 'strategy': 'none'}
+[2023-06-13 22:03:39] Evaluate_00: epoch = 0300 train time = 18 s train loss = 0.009355 train acc = 1.0000, test acc = 0.1051
+[2023-06-13 22:04:08] Evaluate_01: epoch = 0300 train time = 18 s train loss = 0.009350 train acc = 1.0000, test acc = 0.0716
+[2023-06-13 22:04:38] Evaluate_02: epoch = 0300 train time = 17 s train loss = 0.009248 train acc = 1.0000, test acc = 0.0879
+[2023-06-13 22:05:08] Evaluate_03: epoch = 0300 train time = 18 s train loss = 0.009167 train acc = 1.0000, test acc = 0.1345
+[2023-06-13 22:05:37] Evaluate_04: epoch = 0300 train time = 17 s train loss = 0.009315 train acc = 1.0000, test acc = 0.0941
+[2023-06-13 22:06:07] Evaluate_05: epoch = 0300 train time = 18 s train loss = 0.009459 train acc = 1.0000, test acc = 0.0746
+[2023-06-13 22:06:36] Evaluate_06: epoch = 0300 train time = 18 s train loss = 0.009307 train acc = 1.0000, test acc = 0.0861
+[2023-06-13 22:07:06] Evaluate_07: epoch = 0300 train time = 18 s train loss = 0.009604 train acc = 1.0000, test acc = 0.0953
+[2023-06-13 22:07:36] Evaluate_08: epoch = 0300 train time = 18 s train loss = 0.009311 train acc = 1.0000, test acc = 0.1190
+ acc = 1.0000, test acc = 0.0887                                                              acc = 1.0000, test acc =
+[2023-06-13 22:08:35] Evaluate_10: epoch = 0300 train time = 17 s train loss = 0.009460 train acc = 1.0000, test acc = 0.0829                                                              acc = 1.0000, test acc =
+[2023-06-13 22:09:05] Evaluate_11: epoch = 0300 train time = 18 s train loss = 0.009372 train acc = 1.0000, test acc = 0.0821                                                              acc = 1.0000, test acc =
+[2023-06-13 22:09:34] Evaluate_12: epoch = 0300 train time = 18 s train loss = 0.009266 train acc = 1.0000, test acc = 0.0957                                                              acc = 1.0000, test acc =
+[2023-06-13 22:10:04] Evaluate_13: epoch = 0300 train time = 17 s train loss = 0.009479 train acc = 1.0000, test acc = 0.1090                                                              acc = 1.0000, test acc =
+[2023-06-13 22:10:33] Evaluate_14: epoch = 0300 train time = 17 s train loss = 0.009324 train acc = 1.0000, test acc = 0.1005                                                              acc = 1.0000, test acc =
+[2023-06-13 22:11:03] Evaluate_15: epoch = 0300 train time = 18 s train loss = 0.009327 train acc = 1.0000, test acc = 0.0967                                                              acc = 1.0000, test acc =
+[2023-06-13 22:11:32] Evaluate_16: epoch = 0300 train time = 18 s train loss = 0.009172 train acc = 1.0000, test acc = 0.0917                                                              acc = 1.0000, test acc =
+[2023-06-13 22:12:02] Evaluate_17: epoch = 0300 train time = 18 s train loss = 0.009411 train acc = 1.0000, test acc = 0.1084                                                              acc = 1.0000, test acc =
+[2023-06-13 22:12:31] Evaluate_18: epoch = 0300 train time = 18 s train loss = 0.009458 train acc = 1.0000, test acc = 0.1052                                                              acc = 1.0000, test acc =
+[2023-06-13 22:13:01] Evaluate_19: epoch = 0300 train time = 17 s train loss = 0.009490 train acc = 1.0000, test acc = 0.1253                                                              acc = 1.0000, test acc =
+Evaluate 20 random ResNet18, mean = 0.0977 std = 0.0158
+-------------------------
+[2023-06-13 22:13:04] iter = 0000, loss = 1091.3037
+
+================== Exp 3 ==================
+
+Hyper-parameters:
+ {'method': 'DC', 'dataset': 'FashionMNIST', 'model': 'ResNet18', 'ipc': 1, 'eval_mode': 'S', 'num_exp': 5, 'num_eval': 20, 'epoch_eval_train': 300, 'Iteration': 5, 'lr_img': 0.1, 'lr_ne 'num_exp': 5, 'num_eval't': 0.01, 'batch_real': 64, 'batch_train': 64, 'init': 'noise', 'dsa_strategy': 'None', 'data4, 'batch_train': 64, 'in_path': 'data', 'save_path': 'result', 'dis_metric': 'ours', 'outer_loop': 1, 'inner_loop': 1': 'ours', 'outer_loop': , 'device': 'cpu', 'dsa_param': <utils.ParamDiffAug object at 0x000001D13C07EEF0>, 'dsa': Fal7EEF0>, 'dsa': False, 'dcse, 'dc_aug_param': None}
+Evaluation model pool:  ['ResNet18']
+class c = 0: 6000 real images
+class c = 1: 6000 real images
+class c = 2: 6000 real images
+class c = 3: 6000 real images
+class c = 4: 6000 real images
+class c = 5: 6000 real images
+class c = 6: 6000 real images
+class c = 7: 6000 real images
+class c = 8: 6000 real images
+class c = 9: 6000 real images
+real images channel 0, mean = -0.0002, std = 1.0001
+initialize synthetic data from random noise
+[2023-06-13 22:13:36] training begins
+-------------------------
+Evaluation
+model_train = ResNet18, model_eval = ResNet18, iteration = 0
+DC augmentation parameters:
+ {'crop': 4, 'scale': 0.2, 'rotate': 45, 'noise': 0.001, 'strategy': 'none'}
+[2023-06-13 22:14:07] Evaluate_00: epoch = 0300 train time = 19 s train loss = 0.009422 train acc = 1.0000, test acc = acc = 1.0000, test acc = 0.0819
+[2023-06-13 22:14:38] Evaluate_01: epoch = 0300 train time = 18 s train loss = 0.009247 train acc = 1.0000, test acc = 0.0791
+[2023-06-13 22:15:07] Evaluate_02: epoch = 0300 train time = 18 s train loss = 0.009243 train acc = 1.0000, test acc = 0.1130
+[2023-06-13 22:15:37] Evaluate_03: epoch = 0300 train time = 18 s train loss = 0.009409 train acc = 1.0000, test acc = 0.0955
+[2023-06-13 22:16:08] Evaluate_04: epoch = 0300 train time = 19 s train loss = 0.009426 train acc = 1.0000, test acc = 0.1311
+[2023-06-13 22:16:39] Evaluate_05: epoch = 0300 train time = 18 s train loss = 0.009238 train acc = 1.0000, test acc = 0.0969
+[2023-06-13 22:17:09] Evaluate_06: epoch = 0300 train time = 18 s train loss = 0.009378 train acc = 1.0000, test acc = 0.0779
+[2023-06-13 22:17:41] Evaluate_07: epoch = 0300 train time = 18 s train loss = 0.009285 train acc = 1.0000, test acc = 0.0974
+[2023-06-13 22:18:12] Evaluate_08: epoch = 0300 train time = 18 s train loss = 0.009260 train acc = 1.0000, test acc = 0.1051
+[2023-06-13 22:18:44] Evaluate_09: epoch = 0300 train time = 19 s train loss = 0.009592 train acc = 1.0000, test acc = 0.1046
+[2023-06-13 22:19:16] Evaluate_10: epoch = 0300 train time = 19 s train loss = 0.009326 train acc = 1.0000, test acc = 0.0978
+[2023-06-13 22:19:48] Evaluate_11: epoch = 0300 train time = 19 s train loss = 0.009142 train acc = 1.0000, test acc = 0.1022
+[2023-06-13 22:20:20] Evaluate_12: epoch = 0300 train time = 19 s train loss = 0.009215 train acc = 1.0000, test acc = 0.1138
+[2023-06-13 22:20:50] Evaluate_13: epoch = 0300 train time = 18 s train loss = 0.009435 train acc = 1.0000, test acc = 0.1153
+[2023-06-13 22:21:20] Evaluate_14: epoch = 0300 train time = 18 s train loss = 0.009386 train acc = 1.0000, test acc = 0.1027
+[2023-06-13 22:21:51] Evaluate_15: epoch = 0300 train time = 18 s train loss = 0.009379 train acc = 1.0000, test acc = 0.0790
+[2023-06-13 22:22:22] Evaluate_16: epoch = 0300 train time = 18 s train loss = 0.009344 train acc = 1.0000, test acc = 0.1035
+[2023-06-13 22:22:59] Evaluate_17: epoch = 0300 train time = 24 s train loss = 0.009323 train acc = 1.0000, test acc = 0.1157
+[2023-06-13 22:23:35] Evaluate_18: epoch = 0300 train time = 19 s train loss = 0.009340 train acc = 1.0000, test acc = 0.1232
+[2023-06-13 22:24:09] Evaluate_19: epoch = 0300 train time = 20 s train loss = 0.009239 train acc = 1.0000, test acc = 0.0605
+Evaluate 20 random ResNet18, mean = 0.0998 std = 0.0169
+-------------------------
+[2023-06-13 22:24:12] iter = 0000, loss = 1082.0615
+
+================== Exp 4 ==================
+
+Hyper-parameters:
+ {'method': 'DC', 'dataset': 'FashionMNIST', 'model': 'ResNet18', 'ipc': 1, 'eval_mode': 'S', 'num_exp': 5, 'num_eval': 20, 'epoch_eval_train': 300, 'Iteration': 5, 'lr_img': 0.1, 'lr_net': 0.01, 'batch_real': 64, 'batch_train': 64, 'init': 'noise', 'dsa_strategy': 'None', 'data_path': 'data', 'save_path': 'result', 'dis_metric': 'ours', 'outer_loop': 1, 'inner_loop': 1, 'device': 'cpu', 'dsa_param': <utils.ParamDiffAug object at 0x000001D13C07EEF0>, 'dsa': False, 'dc_aug_param': None}
+Evaluation model pool:  ['ResNet18']
+class c = 0: 6000 real images
+class c = 1: 6000 real images
+class c = 2: 6000 real images
+class c = 3: 6000 real images
+class c = 4: 6000 real images
+class c = 5: 6000 real images
+class c = 6: 6000 real images
+class c = 7: 6000 real images
+class c = 8: 6000 real images
+class c = 9: 6000 real images
+real images channel 0, mean = -0.0002, std = 1.0001
+initialize synthetic data from random noise
+[2023-06-13 22:24:46] training begins
+-------------------------
+Evaluation
+model_train = ResNet18, model_eval = ResNet18, iteration = 0
+DC augmentation parameters:
+ {'crop': 4, 'scale': 0.2, 'rotate': 45, 'noise': 0.001, 'strategy': 'none'}
+[2023-06-13 22:25:19] Evaluate_00: epoch = 0300 train time = 20 s train loss = 0.009291 train acc = 1.0000, test acc = 0.0879
+[2023-06-13 22:25:51] Evaluate_01: epoch = 0300 train time = 19 s train loss = 0.009288 train acc = 1.0000, test acc = 0.1090
+[2023-06-13 22:26:24] Evaluate_02: epoch = 0300 train time = 20 s train loss = 0.009393 train acc = 1.0000, test acc = 0.0804
+[2023-06-13 22:26:56] Evaluate_03: epoch = 0300 train time = 19 s train loss = 0.009495 train acc = 1.0000, test acc = 0.1178
+[2023-06-13 22:27:27] Evaluate_04: epoch = 0300 train time = 19 s train loss = 0.009416 train acc = 1.0000, test acc = 0.0873
+[2023-06-13 22:27:59] Evaluate_05: epoch = 0300 train time = 19 s train loss = 0.009213 train acc = 1.0000, test acc = 0.0867
+[2023-06-13 22:28:32] Evaluate_06: epoch = 0300 train time = 19 s train loss = 0.009207 train acc = 1.0000, test acc = 0.1181
+[2023-06-13 22:29:05] Evaluate_07: epoch = 0300 train time = 19 s train loss = 0.009253 train acc = 1.0000, test acc = 0.1005
+[2023-06-13 22:29:37] Evaluate_08: epoch = 0300 train time = 19 s train loss = 0.009463 train acc = 1.0000, test acc = 0.0767
+[2023-06-13 22:30:09] Evaluate_09: epoch = 0300 train time = 19 s train loss = 0.009221 train acc = 1.0000, test acc = 0.0810
+[2023-06-13 22:30:41] Evaluate_10: epoch = 0300 train time = 19 s train loss = 0.009343 train acc = 1.0000, test acc = 0.1118
+[2023-06-13 22:31:13] Evaluate_11: epoch = 0300 train time = 19 s train loss = 0.009239 train acc = 1.0000, test acc = 0.0617
+[2023-06-13 22:31:45] Evaluate_12: epoch = 0300 train time = 19 s train loss = 0.009338 train acc = 1.0000, test acc = 0.0873
+[2023-06-13 22:32:17] Evaluate_13: epoch = 0300 train time = 19 s train loss = 0.009404 train acc = 1.0000, test acc = 0.1090
+[2023-06-13 22:32:51] Evaluate_14: epoch = 0300 train time = 20 s train loss = 0.009274 train acc = 1.0000, test acc = 0.0733
+[2023-06-13 22:33:24] Evaluate_15: epoch = 0300 train time = 20 s train loss = 0.009426 train acc = 1.0000, test acc = 0.1156
+[2023-06-13 22:33:56] Evaluate_16: epoch = 0300 train time = 19 s train loss = 0.009182 train acc = 1.0000, test acc = 0.0920
+[2023-06-13 22:34:28] Evaluate_17: epoch = 0300 train time = 19 s train loss = 0.009551 train acc = 1.0000, test acc = 0.1001
+[2023-06-13 22:35:01] Evaluate_18: epoch = 0300 train time = 19 s train loss = 0.009302 train acc = 1.0000, test acc = 0.0874
+[2023-06-13 22:35:33] Evaluate_19: epoch = 0300 train time = 19 s train loss = 0.009403 train acc = 1.0000, test acc = 0.0907
+Evaluate 20 random ResNet18, mean = 0.0937 std = 0.0155
+-------------------------
+[2023-06-13 22:35:37] iter = 0000, loss = 1099.1600
+
+==================== Final Results ====================
+
+C:\Users\Duan Nguyen\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\fromnumeric.py:3464: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+C:\Users\Duan Nguyen\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:192: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+C:\Users\Duan Nguyen\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:269: RuntimeWarning: Degrees of freedom <= 0 for slice
+  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+C:\Users\Duan Nguyen\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:226: RuntimeWarning: invalid value encountered in divide
+  arrmean = um.true_divide(arrmean, div, out=arrmean,
+C:\Users\Duan Nguyen\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\core\_methods.py:261: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+Run 5 experiments, train on ResNet18, evaluate 0 random ResNet18, mean  = nan%  std = nan%  
