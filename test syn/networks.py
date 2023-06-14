@@ -439,8 +439,8 @@ class ResNet(nn.Module):
         self.in_planes = 16
         self.norm = norm
 
-        self.conv1 = nn.Conv2d(channel, 16, kernel_size=3, stride=1, padding=1, bias=False)
-        self.bn1 = nn.GroupNorm(16, 16, affine=True) if self.norm == 'instancenorm' else nn.BatchNorm2d(64)
+        self.conv1 = nn.Conv2d(channel, 16, kernel_size=7, stride=1, padding=3, bias=False)
+        self.bn1 = nn.GroupNorm(16, 16, affine=True) if self.norm == 'instancenorm' else nn.BatchNorm2d(16)
         self.layer1 = self._make_layer(block, 16, num_blocks[0], stride=1)
         self.layer2 = self._make_layer(block, 32, num_blocks[1], stride=2)
         self.layer3 = self._make_layer(block, 64, num_blocks[2], stride=2)

@@ -20,7 +20,7 @@ def main():
     parser.add_argument('--num_exp', type=int, default=5, help='the number of experiments')
     parser.add_argument('--num_eval', type=int, default=20, help='the number of evaluating randomly initialized models')
     parser.add_argument('--epoch_eval_train', type=int, default=20, help='epochs to train a model with synthetic data')
-    parser.add_argument('--Iteration', type=int, default=1, help='training iterations')
+    parser.add_argument('--Iteration', type=int, default=5, help='training iterations')
     parser.add_argument('--lr_img', type=float, default=0.1, help='learning rate for updating synthetic images')
     parser.add_argument('--lr_net', type=float, default=0.01, help='learning rate for updating network parameters')
     parser.add_argument('--batch_real', type=int, default=64, help='batch size for real data')
