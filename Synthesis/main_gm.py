@@ -33,6 +33,8 @@ def main():
     batch_train = 64
     # initialization of synthetic data, noise/test: initialize from random noise or test images. The two initializations will get similar performances.
     syn_init = 'noise'
+    # distance metric
+    dis_metric = 'ours'
     # For speeding up, we can decrease the Iteration and epoch_eval_train, which will not cause significant performance decrease.
 
 
@@ -43,8 +45,8 @@ def main():
     if not os.path.exists('data'):
         os.mkdir('data')
 
-    if not os.path.exists('ours'):
-        os.mkdir('ours')
+    if not os.path.exists('result'):
+        os.mkdir('result')
 
     eval_it_pool = np.arange(0, train_iteration+1, 50).tolist() if eval_mode == 'S' else [train_iteration] # The list of iterations when we evaluate models and record results.
     channel, im_size, num_classes, class_names, mean, std, dst_train, dst_test, testloader = get_dataset('data')
@@ -113,7 +115,7 @@ def main():
                     param_augment = get_daparam('FashionMNIST', model_eval)
                     accs = []
                     for it_eval in range(num_eval):
-                        net_eval = get_network(model_eval, channel, num_classes, im_size).to(device) # get a random model
+                        net_eval = get_network(channel, num_classes).to(device) # get a random model
                         image_syn_eval, label_syn_eval = copy.deepcopy(image_syn.detach()), copy.deepcopy(label_syn.detach()) # avoid any unaware modification
                         _, acc_train, acc_test = evaluate_synset(it_eval, net_eval, image_syn_eval, label_syn_eval, testloader, lr_net, batch_train, param_augment, device, epoch_eval_train)
                         accs.append(acc_test)
@@ -134,7 +136,7 @@ def main():
 
 
             ''' Train synthetic data '''
-            net = get_network('ResNet18', channel, num_classes, im_size).to(device) # get a random model
+            net = get_network(channel, num_classes).to(device) # get a random model
             net.train()
             net_parameters = list(net.parameters())
             optimizer_net = torch.optim.SGD(net.parameters(), lr=lr_net, momentum=0.5)  # optimizer_img for synthetic data
@@ -180,7 +182,7 @@ def main():
                     loss_syn = criterion(output_syn, lab_syn)
                     gw_syn = torch.autograd.grad(loss_syn, net_parameters, create_graph=True)
 
-                    loss += match_loss(gw_syn, gw_test, args)
+                    loss += match_loss(gw_syn, gw_test, device, dis_metric)
 
                 optimizer_img.zero_grad()
                 loss.backward()
