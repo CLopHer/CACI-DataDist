@@ -19,7 +19,9 @@ import torch.optim as optim
 import gc
 from torch.utils.data.sampler import SubsetRandomSampler
 import time
-
+import sys
+f = open("testout.txt", 'w')
+sys.stdout = f
 # transform method
 transform = transforms.Compose([
             transforms.ToTensor(),
@@ -194,10 +196,10 @@ count = 0
 epochs = [e for e in range(epochNum)]
 losses = []
 accuracies = []
-
+lossGraph =[]
 predictions = []
 label_list = []
-
+start_time = time.time()
 for epoch in range(epochNum):
     for i, (images, labels) in enumerate(trainLoad):
         # move tensor to device
@@ -218,7 +220,7 @@ for epoch in range(epochNum):
         del images, labels, outputs
         torch.cuda.empty_cache()
         gc.collect()
-        
+    lossGraph.append(loss.item())
     print ('Epoch [{}/{}], Loss: {:.4f}'.format(epoch+1, epochNum, loss.item()))
     
     with torch.no_grad():
@@ -237,19 +239,32 @@ for epoch in range(epochNum):
     accuracy = 100 * correct / total
     accuracies.append(accuracy)
     print('Accuracy of the network on the {} validation images: {} %'.format(10000, accuracy))
-    
-plt.plot(epochs, losses)
+
+runTime = time.time() - start_time
+hours = int(np.floor(runTime / 3600))
+mins = int(np.floor((runTime - (hours * 3600)) /60))
+secs = ((runTime - (hours * 3600)) - (mins * 60))
+print("\nRuntime: " + str(hours) + ":" + str(mins) + ":" + str(secs) +"\n")
+i = 0
+plt.plot(epochs, lossGraph)
 plt.xlabel("Epoch")
 plt.ylabel("Loss")
 plt.title("Epochs vs Loss")
 plt.show()
+plt.savefig("EpochsvLoss.png")
+i = 0
+for x in accuracies:
+    accuracies[i] = x.cpu()
+    i+=1
+
 
 plt.plot(epochs, accuracies)
 plt.xlabel("Epoch")
 plt.ylabel("Accuracy")
 plt.title("Epochs vs Accuracy")
 plt.show()
-
+plt.savefig("EpochsvAccuracy.png")
+f.close()
 from itertools import chain 
 
 predictions_list = [predictions[i].tolist() for i in range(len(predictions))]
