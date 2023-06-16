@@ -11,7 +11,7 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset
 from torchvision import datasets, transforms
 from scipy.ndimage.interpolation import rotate as scipyrotate
-from .networks import MLP, ConvNet, LeNet, AlexNet, VGG11BN, VGG11, ResNet18, ResNet18BN_AP
+from networks import ResNet18
 
 
 def get_dataset(data_path):
@@ -43,7 +43,7 @@ class TensorDataset(Dataset):
     
 
 
-def get_network(channel, num_classes, im_size=(28, 28)):
+def get_network(channel, num_classes):
     torch.random.manual_seed(int(time.time() * 1000) % 100000)
     net = ResNet18(channel=channel, num_classes=num_classes)
     
@@ -87,16 +87,16 @@ def distance_wb(gwr, gws):
 
 
 
-def match_loss(gw_syn, gw_real, args):
-    dis = torch.tensor(0.0).to(args.device)
+def match_loss(gw_syn, gw_real, device, dis_metric):
+    dis = torch.tensor(0.0).to(device)
 
-    if args.dis_metric == 'ours':
+    if dis_metric == 'ours':
         for ig in range(len(gw_real)):
             gwr = gw_real[ig]
             gws = gw_syn[ig]
             dis += distance_wb(gwr, gws)
 
-    elif args.dis_metric == 'mse':
+    elif dis_metric == 'mse':
         gw_real_vec = []
         gw_syn_vec = []
         for ig in range(len(gw_real)):
@@ -106,7 +106,7 @@ def match_loss(gw_syn, gw_real, args):
         gw_syn_vec = torch.cat(gw_syn_vec, dim=0)
         dis = torch.sum((gw_syn_vec - gw_real_vec)**2)
 
-    elif args.dis_metric == 'cos':
+    elif dis_metric == 'cos':
         gw_real_vec = []
         gw_syn_vec = []
         for ig in range(len(gw_real)):
