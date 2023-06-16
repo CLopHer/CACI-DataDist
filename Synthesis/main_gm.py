@@ -50,7 +50,7 @@ def main():
 
     eval_it_pool = np.arange(0, train_iteration+1, 50).tolist() if eval_mode == 'S' else [train_iteration] # The list of iterations when we evaluate models and record results.
     channel, im_size, num_classes, class_names, mean, std, dst_train, dst_test, testloader = get_dataset('data')
-    model_eval_pool = ['ResNet18']
+    model_eval_pool = ['ResNet34']
 
 
     accs_all_exps = dict() # record performances of all experiments
