@@ -29,6 +29,12 @@ implementation of synthesis algorithms for distillation
 Outputs of various files found within the repository
 ## Potential Future Work
 Should this project continue to a next field session we belive we have provide with a good foundation for true distillation to take place. By the time we had created and understood our ResNet we had two weeks left and had dropped subsetting to attempt to focus on subsetting.
+
+To see our internal report regarding this project please check:
+
+https://cs-courses.mines.edu/csci370/FS2023S/Groups2023S.html
+
+The final report should be posted under our advisors name in our CACI team section.
 ## Authors
 Now that the first implementation is complete we, "The Client Doesn't Care What we Call Ourselves," would like to provide a proper introduction to ourselves
 
@@ -50,14 +56,19 @@ Experience:
     - PyTorch
     - Matplotlib
     - Sklearn
+    - KMeans
   - Java
   - C++
   - C
 
 **Peter Gultom**
+
 Computer Science / Data Science
- Hometown: Aurora, Colorado
- Work Experience: Technical assistance for faculty
+
+Hometown: Aurora, Colorado
+
+Work Experience: 
+- Technical assistance for faculty
 
 **Duan Nguyen**
 
@@ -86,3 +97,8 @@ Work Experience:
   - Java
   - C++
   - C
+
+## Contributing
+
+Use this repository as you see fit, that being CACI or any potential group that may continue this project.
+
