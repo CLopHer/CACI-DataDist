@@ -88,16 +88,16 @@ def distance_wb(gwr, gws):
 
 
 
-def match_loss(gw_syn, gw_real, args):
-    dis = torch.tensor(0.0).to(args.device)
+def match_loss(gw_syn, gw_real, device, dis_metric):
+    dis = torch.tensor(0.0).to(device)
 
-    if args.dis_metric == 'ours':
+    if dis_metric == 'ours':
         for ig in range(len(gw_real)):
             gwr = gw_real[ig]
             gws = gw_syn[ig]
             dis += distance_wb(gwr, gws)
 
-    elif args.dis_metric == 'mse':
+    elif dis_metric == 'mse':
         gw_real_vec = []
         gw_syn_vec = []
         for ig in range(len(gw_real)):
@@ -107,7 +107,7 @@ def match_loss(gw_syn, gw_real, args):
         gw_syn_vec = torch.cat(gw_syn_vec, dim=0)
         dis = torch.sum((gw_syn_vec - gw_real_vec)**2)
 
-    elif args.dis_metric == 'cos':
+    elif dis_metric == 'cos':
         gw_real_vec = []
         gw_syn_vec = []
         for ig in range(len(gw_real)):
@@ -118,7 +118,7 @@ def match_loss(gw_syn, gw_real, args):
         dis = 1 - torch.sum(gw_real_vec * gw_syn_vec, dim=-1) / (torch.norm(gw_real_vec, dim=-1) * torch.norm(gw_syn_vec, dim=-1) + 0.000001)
 
     else:
-        exit('unknown distance function: %s'%args.dis_metric)
+        exit('unknown distance function: %s'%dis_metric)
 
     return dis
 
@@ -148,10 +148,10 @@ def get_loops(ipc):
 
 
 
-def epoch(mode, dataloader, net, optimizer, criterion, args, aug):
+def epoch(mode, dataloader, net, optimizer, criterion, device, dsa, dsa_strategy, dsa_param, dc_aug_param, aug):
     loss_avg, acc_avg, num_exp = 0, 0, 0
-    net = net.to(args.device)
-    criterion = criterion.to(args.device)
+    net = net.to(device)
+    criterion = criterion.to(device)
 
     if mode == 'train':
         net.train()
@@ -159,13 +159,13 @@ def epoch(mode, dataloader, net, optimizer, criterion, args, aug):
         net.eval()
 
     for i_batch, datum in enumerate(dataloader):
-        img = datum[0].float().to(args.device)
+        img = datum[0].float().to(device)
         if aug:
-            if args.dsa:
-                img = DiffAugment(img, args.dsa_strategy, param=args.dsa_param)
+            if dsa:
+                img = DiffAugment(img, dsa_strategy, param=dsa_param)
             else:
-                img = augment(img, args.dc_aug_param, device=args.device)
-        lab = datum[1].long().to(args.device)
+                img = augment(img, dc_aug_param, device=device)
+        lab = datum[1].long().to(device)
         n_b = lab.shape[0]
 
         output = net(img)
@@ -188,28 +188,28 @@ def epoch(mode, dataloader, net, optimizer, criterion, args, aug):
 
 
 
-def evaluate_synset(it_eval, net, images_train, labels_train, testloader, args):
-    net = net.to(args.device)
-    images_train = images_train.to(args.device)
-    labels_train = labels_train.to(args.device)
-    lr = float(args.lr_net)
-    Epoch = int(args.epoch_eval_train)
+def evaluate_synset(it_eval, net, images_train, labels_train, testloader, device, lr_net, epoch_eval_train, batch_train, dsa, dsa_strategy, dsa_param, dc_aug_param):
+    net = net.to(device)
+    images_train = images_train.to(device)
+    labels_train = labels_train.to(device)
+    lr = float(lr_net)
+    Epoch = int(epoch_eval_train)
     lr_schedule = [Epoch//2+1]
     optimizer = torch.optim.SGD(net.parameters(), lr=lr, momentum=0.9, weight_decay=0.0005)
-    criterion = nn.CrossEntropyLoss().to(args.device)
+    criterion = nn.CrossEntropyLoss().to(device)
 
     dst_train = TensorDataset(images_train, labels_train)
-    trainloader = torch.utils.data.DataLoader(dst_train, batch_size=args.batch_train, shuffle=True, num_workers=0)
+    trainloader = torch.utils.data.DataLoader(dst_train, batch_size=batch_train, shuffle=True, num_workers=0)
 
     start = time.time()
     for ep in range(Epoch+1):
-        loss_train, acc_train = epoch('train', trainloader, net, optimizer, criterion, args, aug = True)
+        loss_train, acc_train = epoch('train', trainloader, net, optimizer, criterion, device, dsa, dsa_strategy, dsa_param, dc_aug_param, aug = True)
         if ep in lr_schedule:
             lr *= 0.1
             optimizer = torch.optim.SGD(net.parameters(), lr=lr, momentum=0.9, weight_decay=0.0005)
 
     time_train = time.time() - start
-    loss_test, acc_test = epoch('test', testloader, net, optimizer, criterion, args, aug = False)
+    loss_test, acc_test = epoch('test', testloader, net, optimizer, criterion, device,dsa, dsa_strategy, dsa_param, dc_aug_param, aug = False)
     print('%s Evaluate_%02d: epoch = %04d train time = %d s train loss = %.6f train acc = %.4f, test acc = %.4f' % (get_time(), it_eval, Epoch, int(time_train), loss_train, acc_train, acc_test))
 
     return net, acc_train, acc_test
@@ -278,7 +278,7 @@ def augment(images, dc_aug_param, device):
 
 
 
-def get_daparam(dataset, model, model_eval, ipc):
+def get_daparam():
     # We find that augmentation doesn't always benefit the performance.
     # So we do augmentation for some of the settings.
 
@@ -289,38 +289,13 @@ def get_daparam(dataset, model, model_eval, ipc):
     dc_aug_param['noise'] = 0.001
     dc_aug_param['strategy'] = 'none'
 
-    if dataset == 'MNIST':
-        dc_aug_param['strategy'] = 'crop_scale_rotate'
-
-    if model_eval in ['ConvNetBN']: # Data augmentation makes model training with Batch Norm layer easier.
-        dc_aug_param['strategy'] = 'crop_noise'
-
     return dc_aug_param
 
 
-def get_eval_pool(eval_mode, model, model_eval):
-    if eval_mode == 'M': # multiple architectures
-        model_eval_pool = ['MLP', 'ConvNet', 'LeNet', 'AlexNet', 'VGG11', 'ResNet18']
-    elif eval_mode == 'B':  # multiple architectures with BatchNorm for DM experiments
-        model_eval_pool = ['ConvNetBN', 'ConvNetASwishBN', 'AlexNetBN', 'VGG11BN', 'ResNet18BN']
-    elif eval_mode == 'W': # ablation study on network width
-        model_eval_pool = ['ConvNetW32', 'ConvNetW64', 'ConvNetW128', 'ConvNetW256']
-    elif eval_mode == 'D': # ablation study on network depth
-        model_eval_pool = ['ConvNetD1', 'ConvNetD2', 'ConvNetD3', 'ConvNetD4']
-    elif eval_mode == 'A': # ablation study on network activation function
-        model_eval_pool = ['ConvNetAS', 'ConvNetAR', 'ConvNetAL', 'ConvNetASwish']
-    elif eval_mode == 'P': # ablation study on network pooling layer
-        model_eval_pool = ['ConvNetNP', 'ConvNetMP', 'ConvNetAP']
-    elif eval_mode == 'N': # ablation study on network normalization layer
-        model_eval_pool = ['ConvNetNN', 'ConvNetBN', 'ConvNetLN', 'ConvNetIN', 'ConvNetGN']
-    elif eval_mode == 'S': # itself
-        if 'BN' in model:
-            print('Attention: Here I will replace BN with IN in evaluation, as the synthetic set is too small to measure BN hyper-parameters.')
-        model_eval_pool = [model[:model.index('BN')]] if 'BN' in model else [model]
-    elif eval_mode == 'SS':  # itself
-        model_eval_pool = [model]
-    else:
-        model_eval_pool = [model_eval]
+def get_eval_pool(model):
+    if 'BN' in model:
+        print('Attention: Here I will replace BN with IN in evaluation, as the synthetic set is too small to measure BN hyper-parameters.')
+    model_eval_pool = [model[:model.index('BN')]] if 'BN' in model else [model]
     return model_eval_pool
 
 
